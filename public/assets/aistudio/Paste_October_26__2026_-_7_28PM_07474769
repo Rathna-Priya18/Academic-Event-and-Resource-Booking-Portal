@@ -1,0 +1,792 @@
+# MASTER PROJECT DEVELOPMENT PROMPT
+## Academic Event and Resource Booking Portal — Complete MERN Full-Stack Application
+
+Act as a **senior MERN stack developer, software architect, UI/UX designer, database designer, security engineer, and software testing specialist**.
+
+Build a complete, production-style, fully functional MERN full-stack web application titled **“Academic Event and Resource Booking Portal.”**
+
+The application must be suitable for a college final-year project review and demonstration. Do not create only a UI prototype, landing page, or frontend mockup. Develop the complete application with functional frontend, backend APIs, database integration, authentication, authorization, validation, booking conflict detection, admin controls, testing, and documentation.
+
+## 1. Project Overview
+
+**Project title:** Academic Event and Resource Booking Portal
+
+**Problem statement:**
+Educational institutions manage seminar halls, laboratories, classrooms, auditoriums, projectors, and other shared resources through manual registers, spreadsheets, emails, and messages. This leads to scheduling conflicts, double bookings, poor visibility of availability, delayed approvals, and inefficient resource utilization.
+
+**Proposed solution:**
+Develop a centralized web-based booking system that allows students, faculty members, and authorized staff to discover resources, check availability, submit booking requests, and track their requests. Administrators must be able to manage users, resources, events, approvals, booking schedules, and reports.
+
+**Primary objective:**
+Create a secure, responsive, attractive, and reliable booking platform that prevents overlapping reservations and provides separate dashboards for normal users and administrators.
+
+## 2. Mandatory Technology Stack
+
+Use the MERN stack throughout the application.
+
+- **Frontend:** React.js with Vite and TypeScript.
+- **Styling:** Tailwind CSS, reusable components, Lucide icons, and polished CSS animations.
+- **Routing:** React Router.
+- **State management:** React Context API or an appropriate lightweight state solution.
+- **Backend:** Node.js and Express.js.
+- **Database:** MongoDB with Mongoose.
+- **Authentication:** JWT-based authentication, secure password hashing using bcrypt, protected routes, and role-based access control.
+- **API communication:** Axios or Fetch API.
+- **Form validation:** React Hook Form with Zod or an equivalent validation library.
+- **Charts:** Recharts for analytics dashboards.
+- **Testing:** Vitest and React Testing Library for frontend tests; Jest or Vitest with Supertest for backend API tests.
+- **Development tools:** VS Code, npm, MongoDB Atlas or local MongoDB, and Git.
+
+Use compatible, stable package versions. Include every required dependency and complete setup instructions.
+
+Do not replace MongoDB with localStorage, mock arrays, or an unrelated database. localStorage may be used for non-sensitive UI preferences only. Do not use hardcoded mock data as the permanent data source.
+
+## 3. Professional UI/UX Design
+
+Create a modern academic institution management interface with a clean, premium, professional appearance.
+
+### Visual design requirements
+
+- Use a modern SaaS dashboard design.
+- Use a navy/indigo primary palette with white or light-gray surfaces and restrained teal or blue accents.
+- Use consistent typography, spacing, border radii, shadows, icons, and component sizing.
+- Provide a responsive layout for desktop, laptop, tablet, and mobile.
+- Add a collapsible sidebar, top navigation bar, profile menu, breadcrumbs, and notification indicators.
+- Use well-designed cards, tables, calendars, charts, filters, badges, dialogs, drawers, and empty states.
+- Include loading skeletons, success/error toast messages, confirmation dialogs, and clear form validation.
+- Add hover states, subtle transitions, and accessible keyboard navigation.
+- Include light/dark theme support if it can be implemented without compromising core functionality.
+- Avoid excessive gradients, oversized headings, cluttered layouts, and generic template styling.
+- Ensure good contrast and readable text.
+
+### Required pages
+
+1. Login page.
+2. Registration page.
+3. Forgot password and password reset pages.
+4. Public home/dashboard landing page.
+5. User dashboard.
+6. Browse resources page.
+7. Resource details page.
+8. Availability calendar page.
+9. New booking request page.
+10. My bookings page.
+11. Booking details page.
+12. Event management page.
+13. Notifications page.
+14. User profile and settings page.
+15. Admin dashboard.
+16. Admin user management page.
+17. Admin resource management page.
+18. Admin booking approval page.
+19. Admin calendar and schedule management page.
+20. Admin event management page.
+21. Reports and analytics page.
+22. Audit log page.
+23. Unauthorized, not-found, and server-error pages.
+
+Create a consistent design system and reusable UI components instead of duplicating code.
+
+## 4. Separate User and Admin Modules
+
+Implement two genuinely separate role-based application experiences.
+
+### A. User module
+
+Users may be students, faculty members, or authorized institutional staff.
+
+Implement the following features:
+
+**1. User authentication**
+- Register with name, email, department, role designation, and password.
+- Validate email format and password strength.
+- Hash passwords before database storage.
+- Login and logout securely.
+- Support forgot-password and reset-password workflows.
+- Restrict public registration to permitted user roles. Never allow public users to register as administrators.
+- Include account status checks and secure session handling.
+
+**2. User dashboard**
+Display:
+- Total bookings.
+- Pending requests.
+- Approved bookings.
+- Rejected or cancelled bookings.
+- Upcoming reservations.
+- Recent booking activity.
+- Available resources.
+- A calendar or schedule summary.
+
+All values must be calculated from actual database records.
+
+**3. Browse and search resources**
+Allow users to browse:
+- Seminar halls.
+- Classrooms.
+- Computer laboratories.
+- Science laboratories.
+- Auditoriums.
+- Meeting rooms.
+- Projectors.
+- Audio/video equipment.
+- Other institutional resources.
+
+Provide search by name, resource type, building, department, capacity, equipment, and availability.
+
+Add filters, sorting, pagination, and detailed resource cards.
+
+**4. Resource details**
+Each resource must display:
+- Resource name and category.
+- Description and images.
+- Building, floor, and location.
+- Seating capacity.
+- Available equipment and facilities.
+- Operating hours.
+- Booking restrictions.
+- Maintenance or unavailable status.
+- Availability calendar.
+- Booking button.
+
+**5. Booking request workflow**
+Users must be able to:
+- Select a resource.
+- Enter event title and purpose.
+- Select event category.
+- Select date, start time, and end time.
+- Enter expected attendees.
+- Enter department and contact details.
+- Add special requirements.
+- Submit a booking request.
+- View the booking reference number.
+- Track approval status.
+- View booking details and status history.
+- Cancel eligible bookings according to policy.
+
+Validate every booking on both the frontend and backend.
+
+**6. My bookings**
+Display bookings using cards and a filterable table.
+
+Support filtering by:
+- Pending.
+- Approved.
+- Rejected.
+- Cancelled.
+- Completed.
+
+Provide date filters, sorting, pagination, booking details, and cancellation actions where permitted.
+
+**7. Events**
+Allow users to create event records associated with their booking requests, view event information, and manage their own eligible event records.
+
+**8. Notifications**
+Notify users about:
+- Booking submission.
+- Approval or rejection.
+- Requested changes.
+- Cancellation.
+- Upcoming events.
+- Administrative announcements.
+
+Use persistent database notifications. Email notifications may be included through configurable SMTP credentials.
+
+**9. Profile**
+Allow users to update permitted profile details and change passwords securely.
+
+### B. Admin module
+
+Administrators must have a dedicated dashboard and navigation system.
+
+**1. Admin dashboard**
+Display real-time database-backed statistics:
+- Total registered users.
+- Total resources.
+- Total bookings.
+- Pending approvals.
+- Approved bookings.
+- Rejected and cancelled bookings.
+- Resource utilization.
+- Most frequently booked resources.
+- Booking trends by day, week, or month.
+- Recent activities.
+- Upcoming events.
+
+Use interactive charts, KPI cards, tables, and filters.
+
+**2. User management**
+Administrators can:
+- View registered users.
+- Search, filter, and paginate users.
+- View user profiles.
+- Activate or deactivate accounts.
+- Assign permitted roles where authorized.
+- Review booking history.
+- Apply appropriate access restrictions.
+
+Never allow an ordinary user to perform administrator actions by manipulating the frontend.
+
+**3. Resource management**
+Administrators can:
+- Add resources.
+- Edit resource details.
+- Upload or configure resource images.
+- Assign resource categories and locations.
+- Set capacity, operating hours, equipment, and booking restrictions.
+- Activate or deactivate resources.
+- Mark resources under maintenance.
+- Configure booking durations and advance-booking limits.
+- View each resource's booking schedule.
+- Prevent deletion or deactivation from silently invalidating existing approved reservations.
+
+**4. Booking approval management**
+Administrators can:
+- View all booking requests.
+- Filter requests by resource, department, date, and status.
+- Review event purpose and attendee count.
+- Approve or reject requests.
+- Enter rejection reasons.
+- Request changes where supported.
+- Cancel reservations when authorized.
+- View booking history and status changes.
+
+Every approval action must revalidate resource availability on the server before changing the booking status.
+
+**5. Calendar management**
+Provide day, week, and month views for institutional resources and events.
+
+Use distinct visual indicators for pending, approved, cancelled, and unavailable periods. Only approved bookings should block confirmed reservation slots unless the institution explicitly configures temporary holds.
+
+**6. Event management**
+Allow authorized administrators to create, edit, publish, cancel, and archive institutional events. Associate events with resources and approved reservations when relevant.
+
+**7. Reports and analytics**
+Provide reports for:
+- Bookings by department.
+- Resource utilization.
+- Most-booked resources.
+- Rejected and cancelled requests.
+- Peak booking hours.
+- Monthly booking trends.
+- Upcoming institutional events.
+
+Implement date and resource filters, pagination where applicable, and CSV export. Clearly label the reporting period and data included.
+
+**8. Audit logs**
+Record important actions, including:
+- Login events where appropriate.
+- Resource creation and changes.
+- Booking approvals and rejections.
+- Role and account status changes.
+- Administrative cancellations.
+
+Store actor, action, affected record, timestamp, and relevant non-sensitive metadata. Never log passwords, JWTs, reset tokens, or other secrets.
+
+## 5. Core Booking Conflict Prevention Engine
+
+This is the most important business requirement.
+
+Implement a reliable server-side mechanism that prevents double bookings and overlapping reservations.
+
+For example, if Seminar Hall A has an approved reservation from 10:00 AM to 12:00 PM, another request for the same hall from 11:00 AM to 1:00 PM must not be approved.
+
+However, a reservation from 12:00 PM to 1:00 PM may be permitted if the institution does not configure a buffer period.
+
+Use the half-open interval rule:
+
+startA < endB AND endA > startB
+
+Two reservations conflict when they refer to the same resource and their time intervals overlap.
+
+Implement these rules:
+
+1. Validate that the start time is before the end time.
+2. Validate operating hours, maintenance periods, capacity, and booking restrictions.
+3. Reject requests for dates in the past.
+4. Prevent overlapping approved bookings for the same resource.
+5. Recheck availability during administrative approval.
+6. Recheck availability when a user edits a booking.
+7. Ensure cancelled and rejected bookings do not block availability.
+8. Prevent users from changing another user's bookings.
+9. Return meaningful HTTP status codes and clear error messages.
+10. Prevent race conditions when two requests attempt to reserve the same resource simultaneously.
+
+Do not rely on a frontend availability check alone.
+
+Implement transactional or atomic reservation handling appropriate to the chosen MongoDB deployment. If using MongoDB transactions, document the replica-set requirement. Ensure concurrent approvals cannot both succeed for overlapping time slots. Explain any limitations and how the implementation addresses them.
+
+Support an optional configurable buffer time between reservations.
+
+If two pending requests overlap, allow both to remain pending if appropriate, but ensure that only one can be approved for the conflicting time slot. Alternatively, implement a configurable temporary-hold policy and explain its expiration behavior.
+
+Create automated tests for overlapping bookings, adjacent bookings, same-time requests, cancellations, maintenance periods, and concurrent approval attempts.
+
+## 6. Database Design
+
+Create Mongoose schemas, models, indexes, validation rules, and relationships for at least:
+
+1. User
+2. Resource
+3. Booking
+4. Event
+5. Notification
+6. AuditLog
+
+Add additional models if required, such as password-reset tokens or temporary booking holds.
+
+### User model
+Include:
+- Name.
+- Email with unique index.
+- Hashed password.
+- Department.
+- Role.
+- Account status.
+- Profile information.
+- Timestamps.
+
+### Resource model
+Include:
+- Name.
+- Category.
+- Description.
+- Location.
+- Capacity.
+- Facilities.
+- Operating hours.
+- Booking restrictions.
+- Maintenance status.
+- Active status.
+- Image information.
+- Timestamps.
+
+### Booking model
+Include:
+- Unique booking reference.
+- User reference.
+- Resource reference.
+- Event title and purpose.
+- Department.
+- Event category.
+- Date and timezone-aware start/end timestamps.
+- Expected attendees.
+- Special requirements.
+- Status.
+- Approval/rejection information.
+- Cancellation information.
+- Status history.
+- Creation and modification timestamps.
+
+### Event model
+Include:
+- Title.
+- Description.
+- Organizer.
+- Department.
+- Start/end date and time.
+- Associated booking/resource references where applicable.
+- Publication status.
+
+### Notification model
+Include:
+- Recipient.
+- Notification type.
+- Message.
+- Related booking/event reference.
+- Read/unread status.
+- Creation timestamp.
+
+### AuditLog model
+Include:
+- Actor.
+- Action.
+- Entity type and ID.
+- Timestamp.
+- Non-sensitive metadata.
+
+Define indexes for common searches and relationships. Enforce unique constraints where appropriate. Do not assume a normal MongoDB index alone prevents arbitrary overlapping time intervals.
+
+## 7. Backend API Requirements
+
+Build a properly structured REST API under `/api`.
+
+Example endpoint groups:
+
+**Authentication**
+- POST `/api/auth/register`
+- POST `/api/auth/login`
+- POST `/api/auth/logout`
+- GET `/api/auth/me`
+- POST `/api/auth/forgot-password`
+- POST `/api/auth/reset-password`
+
+**Users**
+- GET `/api/users`
+- GET `/api/users/:id`
+- PATCH `/api/users/:id`
+- PATCH `/api/users/:id/status`
+
+**Resources**
+- GET `/api/resources`
+- GET `/api/resources/:id`
+- POST `/api/resources`
+- PATCH `/api/resources/:id`
+- DELETE `/api/resources/:id`
+- GET `/api/resources/:id/availability`
+
+**Bookings**
+- POST `/api/bookings`
+- GET `/api/bookings/my`
+- GET `/api/bookings`
+- GET `/api/bookings/:id`
+- PATCH `/api/bookings/:id`
+- PATCH `/api/bookings/:id/cancel`
+- PATCH `/api/bookings/:id/approve`
+- PATCH `/api/bookings/:id/reject`
+
+**Events**
+- GET `/api/events`
+- GET `/api/events/:id`
+- POST `/api/events`
+- PATCH `/api/events/:id`
+- DELETE `/api/events/:id`
+
+**Notifications**
+- GET `/api/notifications`
+- PATCH `/api/notifications/:id/read`
+
+**Reports**
+- GET `/api/reports/overview`
+- GET `/api/reports/utilization`
+- GET `/api/reports/bookings`
+- GET `/api/reports/export`
+
+**Audit logs**
+- GET `/api/audit-logs`
+
+Adjust the endpoint list where needed, but implement every endpoint required by the final UI.
+
+Apply authentication and role authorization to every protected route. Validate request bodies, query parameters, path parameters, and database identifiers. Use consistent JSON response structures and centralized error handling.
+
+Implement:
+- Correct HTTP status codes.
+- Pagination and filtering.
+- Search and sorting.
+- Request validation.
+- Rate limiting for sensitive endpoints.
+- Security headers.
+- Restricted CORS.
+- Safe error messages.
+- Environment-based configuration.
+- Logging.
+- API health-check endpoint.
+- Secure file-upload handling if uploads are implemented.
+
+## 8. Security Requirements
+
+Implement:
+- Password hashing with bcrypt.
+- JWT authentication with secure expiration.
+- Server-side role-based authorization.
+- Strong input validation.
+- Protection against NoSQL injection.
+- Appropriate XSS and injection protections.
+- Rate limiting on login and password-reset endpoints.
+- Secure CORS configuration.
+- Helmet security headers.
+- Secure cookie handling if using cookie-based authentication.
+- Safe handling of environment secrets.
+- Ownership checks for user bookings and profile operations.
+- Protection against unauthorized resource modification.
+- No hardcoded administrator passwords or API keys.
+- No production secrets in frontend environment variables.
+
+Use a coherent authentication strategy. If using cookies, configure HttpOnly, Secure in production, and appropriate SameSite settings with CSRF protection where required. If using bearer tokens, document storage risks and implement an appropriate refresh/logout strategy.
+
+Never expose password hashes, reset tokens, or authentication secrets through API responses.
+
+## 9. Frontend Architecture
+
+Organize the project into reusable modules.
+
+Suggested structure:
+
+`client/`
+- `src/components/`
+- `src/layouts/`
+- `src/pages/auth/`
+- `src/pages/user/`
+- `src/pages/admin/`
+- `src/features/resources/`
+- `src/features/bookings/`
+- `src/features/events/`
+- `src/features/notifications/`
+- `src/features/reports/`
+- `src/hooks/`
+- `src/context/`
+- `src/services/`
+- `src/types/`
+- `src/utils/`
+- `src/routes/`
+
+`server/`
+- `src/config/`
+- `src/controllers/`
+- `src/models/`
+- `src/routes/`
+- `src/middleware/`
+- `src/services/`
+- `src/validators/`
+- `src/utils/`
+- `src/tests/`
+- `src/app.ts`
+- `src/server.ts`
+
+Use a clean architecture with separation of routes, controllers, services, validation, and models. Avoid putting all backend logic into one file.
+
+Use TypeScript consistently across the frontend and backend.
+
+## 10. Integration Requirements
+
+The frontend must connect to the real backend.
+
+- All dashboards must fetch actual API data.
+- All forms must submit to backend endpoints.
+- All booking statuses must update from server responses.
+- Search, filtering, sorting, and pagination must function.
+- Calendar events must come from database records.
+- Resource availability must be calculated by the backend.
+- Notifications must be persisted.
+- Admin actions must update database records.
+- Charts must use real aggregation results.
+- CSV export must return meaningful data.
+- Loading, empty, error, and success states must be implemented.
+- Authentication must persist appropriately across page refreshes.
+- Unauthorized access must redirect or display an appropriate error.
+- Handle expired sessions and failed network requests.
+- Ensure all navigation links, buttons, dropdowns, and dialogs work.
+
+Do not leave decorative buttons, non-functional controls, fake charts, or placeholder links in the final application.
+
+If a feature depends on external configuration, such as email delivery or image storage, document its setup and provide a graceful development fallback without falsely reporting that the external action succeeded.
+
+## 11. Sample Data and Demo Accounts
+
+Provide a development-only seed script that creates:
+- One administrator.
+- Multiple student/faculty accounts.
+- At least 10 different resources.
+- Multiple departments.
+- Approved, pending, rejected, and cancelled bookings.
+- Sample events and notifications.
+
+Use fictional sample data.
+
+Create administrator credentials through environment variables or an interactive setup process. Never commit real credentials to the repository.
+
+Document the demo login process and make it clear that seed accounts are for local demonstration only. Disable public administrator registration.
+
+Include a reset or reseed process suitable for development.
+
+## 12. Testing and Quality Assurance
+
+Write automated tests for:
+
+**Authentication**
+- Successful registration.
+- Duplicate email rejection.
+- Incorrect password rejection.
+- Protected routes.
+- Unauthorized role access.
+
+**Resources**
+- Resource creation.
+- Resource update.
+- Invalid resource data.
+- Inactive and maintenance resources.
+
+**Bookings**
+- Successful booking creation.
+- Overlapping booking rejection.
+- Adjacent booking acceptance.
+- Invalid date/time rejection.
+- Capacity validation.
+- Approval and rejection.
+- Cancellation and slot release.
+- Booking ownership enforcement.
+- Concurrent approval conflict prevention.
+
+**Admin**
+- User management permissions.
+- Resource management permissions.
+- Report endpoint permissions.
+- Audit log generation.
+
+**Frontend**
+- Form validation.
+- Protected route behavior.
+- Loading and error states.
+- Booking submission.
+- Role-specific navigation.
+
+Provide commands to run the test suites and report which tests actually pass. Do not claim tests passed unless they were executed successfully.
+
+## 13. Final-Review Documentation
+
+Create a `docs/` directory containing:
+
+1. Project abstract.
+2. Introduction.
+3. Problem statement.
+4. Existing system.
+5. Proposed system.
+6. Objectives and scope.
+7. Functional requirements.
+8. Non-functional requirements.
+9. Software and hardware requirements.
+10. System architecture diagram.
+11. Use-case diagram.
+12. ER diagram.
+13. Database schema documentation.
+14. Data-flow diagram.
+15. User workflow.
+16. Admin workflow.
+17. API documentation.
+18. UI screenshots or screenshot instructions.
+19. Testing strategy and test results.
+20. Security measures.
+21. Installation and deployment guide.
+22. Limitations.
+23. Future enhancements.
+24. Conclusion.
+25. References.
+
+Provide Mermaid source for architecture, use-case, and workflow diagrams where suitable. Provide an ER diagram that correctly represents users, resources, bookings, events, notifications, and audit logs.
+
+Also create:
+- `README.md`
+- `.env.example`
+- `.gitignore`
+- API documentation
+- Database seed instructions
+- Demo presentation outline
+- Final-review viva questions and answers.
+
+Do not invent test results, screenshots, deployment URLs, or external references.
+
+## 14. Deployment and Configuration
+
+Provide deployment instructions for:
+- MongoDB Atlas.
+- Frontend hosting.
+- Backend hosting.
+- Environment variables.
+- Production build.
+- CORS configuration.
+- Database connectivity.
+- Health checks.
+
+Include:
+- Root package scripts where practical.
+- Separate client/server installation commands.
+- Development startup commands.
+- Production build commands.
+- Seed commands.
+- Test commands.
+
+Use environment variables for database URLs, JWT secrets, frontend URLs, SMTP credentials, and other sensitive configuration.
+
+Provide a clear local development setup before discussing deployment.
+
+## 15. Gemini AI Studio Development Instructions
+
+Build the application systematically and verify each part before moving forward.
+
+**Phase 1 — Planning**
+- Explain the architecture.
+- Define the database relationships.
+- Define role permissions.
+- List all pages, API endpoints, and modules.
+- Establish the design system.
+- Identify technical risks, particularly concurrent booking conflicts.
+
+**Phase 2 — Project foundation**
+- Create the complete folder structure.
+- Configure React, Vite, TypeScript, Tailwind CSS, Express, MongoDB, and Mongoose.
+- Configure environment variables.
+- Implement database connection and centralized error handling.
+
+**Phase 3 — Authentication and security**
+- Implement registration, login, logout, password reset, JWT handling, role middleware, and protected routes.
+- Verify authorization on the backend.
+
+**Phase 4 — Core backend**
+- Implement models, resource APIs, booking APIs, availability checks, conflict prevention, approval workflows, notifications, and audit logs.
+- Write backend tests.
+
+**Phase 5 — Frontend UI/UX**
+- Build the design system and responsive layouts.
+- Implement all user and admin pages.
+- Integrate each page with the backend.
+- Add loading, empty, validation, and error states.
+
+**Phase 6 — Advanced features**
+- Implement calendar management, events, reports, CSV export, charts, and notifications.
+- Complete all remaining workflows.
+
+**Phase 7 — Integration and testing**
+- Run the application.
+- Fix compilation errors and runtime errors.
+- Test all major user journeys.
+- Verify API integration and database persistence.
+- Test booking conflicts and concurrent approvals.
+- Check mobile responsiveness and authorization.
+
+**Phase 8 — Final review preparation**
+- Complete documentation.
+- Generate Mermaid diagrams.
+- Prepare seed data and safe demo accounts.
+- Prepare the final-review demonstration script.
+- Prepare viva questions and answers.
+- Create a feature-completion checklist.
+
+### Strict development rules
+
+1. Build a complete working project, not just a prototype.
+2. Do not omit files with statements such as “implement similarly” or “add the remaining code yourself.”
+3. Do not replace real backend functionality with simulated frontend responses.
+4. Do not skip error handling, authorization, validation, or conflict prevention.
+5. Do not leave TODOs for mandatory features.
+6. Do not overwrite previously working files without checking their dependencies.
+7. Keep imports, filenames, routes, and types consistent.
+8. Whenever code is modified, explain which file changed and why.
+9. If output limits prevent generating the entire project at once, divide the work into clearly numbered phases and continue from the last completed file without repeating or losing previous work.
+10. Maintain a project manifest tracking every file created, its purpose, and its implementation status.
+11. Verify the generated code by running available checks; never claim execution or testing that did not occur.
+12. If AI Studio cannot directly create, execute, or persist a required file, provide the complete file contents and exact instructions to create and verify it.
+13. Use real MongoDB-backed functionality for every data-dependent feature.
+14. Ensure the frontend, backend, and database work together as one application.
+
+## 16. Final Acceptance Criteria
+
+The project is considered complete only when:
+
+- [ ] The application starts successfully.
+- [ ] The frontend connects to the backend.
+- [ ] MongoDB stores and retrieves real data.
+- [ ] User and administrator experiences are separate.
+- [ ] Authentication and role-based access control work.
+- [ ] Users can browse resources and submit booking requests.
+- [ ] Administrators can manage resources and approve/reject bookings.
+- [ ] Overlapping approved bookings are prevented, including concurrent approval attempts.
+- [ ] Availability calendars show accurate data.
+- [ ] Events and notifications work.
+- [ ] Dashboards and charts use actual database data.
+- [ ] Reports and CSV exports work.
+- [ ] Validation, error handling, and security controls are implemented.
+- [ ] Core automated tests have been executed and their results documented.
+- [ ] All mandatory pages and actions work without placeholder functionality.
+- [ ] Documentation, diagrams, environment examples, and setup instructions are complete.
+- [ ] The project can be demonstrated from a clean local setup.
+
+**Begin with Phase 1. Then implement the actual application in a controlled sequence, keeping a persistent checklist of completed and remaining features. Do not stop after generating a visual design. Continue until all acceptance criteria have been implemented and verified, clearly identifying any item that cannot be completed in the available environment.**
